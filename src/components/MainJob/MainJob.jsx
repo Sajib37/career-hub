@@ -1,7 +1,6 @@
 import { BiLocationPlus } from "react-icons/bi";
 import { BiDollarCircle } from "react-icons/bi";
-import { Link } from "react-router-dom";
-const Job = ({ job }) => {
+const MainJob = ({ job }) => {
     const {
         logo,
         job_title,
@@ -12,7 +11,7 @@ const Job = ({ job }) => {
         salary,id
     } = job;
     return (
-        <div className="card card-compact bg-base-100 shadow-lg border-2 rounded-none pt-4">
+        <div className="card card-compact bg-base-100 shadow-lg border-2 rounded-lg py-6">
             <figure>
                 <img src={logo} alt="Company Logo" />
             </figure>
@@ -38,15 +37,13 @@ const Job = ({ job }) => {
                     </div>
                 </div>
                 <div className=" flex justify-center">
-                    <Link to={`/job/${id}`}>
                         <button type="button" className="mt-3 bg-gradient-to-r from-[#8C9CFE] to-[#9774FF] w-28 p-3 rounded-xl text-white font-medium">
                             View details
                         </button>
-                    </Link>
                 </div>
             </div>
         </div>
     );
 };
 
-export default Job;
+export default MainJob;
