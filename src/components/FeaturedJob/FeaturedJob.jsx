@@ -1,5 +1,6 @@
 import { BiLocationPlus } from "react-icons/bi";
 import { BiDollarCircle } from "react-icons/bi";
+import { Link } from "react-router-dom";
 const Job = ({ job }) => {
     const {
         logo,
@@ -8,7 +9,7 @@ const Job = ({ job }) => {
         remote_or_onsite,
         job_type,
         location,
-        salary,
+        salary,id
     } = job;
     return (
         <div className="card card-compact bg-base-100 shadow-lg border-2 rounded-none pt-4">
@@ -36,9 +37,11 @@ const Job = ({ job }) => {
                         <p>Salary: {salary}</p>
                     </div>
                 </div>
-                <button type="button" class="mt-3 bg-gradient-to-r from-[#8C9CFE] to-[#9774FF] w-28 p-3 rounded-xl text-white font-medium">
-                    View details
-                </button>
+                <Link to={`/job/${id}`}>
+                    <button type="button" className="mt-3 bg-gradient-to-r from-[#8C9CFE] to-[#9774FF] w-28 p-3 rounded-xl text-white font-medium">
+                        View details
+                    </button>
+                </Link>
             </div>
         </div>
     );
