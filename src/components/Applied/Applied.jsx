@@ -9,6 +9,7 @@ import Dropdown from "../Dropdown/Dropdown";
 const Applied = () => {
     const jobs = useLoaderData();
     const [jobsApplied, setJobsApplied] = useState([]);
+    const [displayJobs, setDisplayjobs] = useState([]);
     useEffect(() => {
         let appliedJobs = [];
         const storedJobsID = getStoredApplication();
@@ -19,9 +20,23 @@ const Applied = () => {
             }
         }
         setJobsApplied(appliedJobs);
+        setDisplayjobs(appliedJobs);
     }, []);
 
-    
+    const handleDisplayJobs = (filter) => {
+        if (filter === 'all') {
+            setDisplayjobs(jobsApplied)
+        }
+        else if (filter === 'Remote') {
+            const filterJob = jobsApplied.filter(job => job.remote_or_onsite ===filter);
+            setDisplayjobs(filterJob)
+        }
+        else if (filter === 'Onsite') {
+            const filterJob = jobsApplied.filter(job => job.remote_or_onsite === filter);
+            setDisplayjobs(filterJob);
+        }
+        console.log("hanle clicked")
+    }
 
     return (
         <div>
@@ -35,9 +50,9 @@ const Applied = () => {
             </div>
 
             <div className="max-w-screen-xl mx-auto px-1 relative mt-4 pt-8">
-                <Dropdown className=""></Dropdown>
+                <Dropdown className="" handleDisplayJobs={handleDisplayJobs}></Dropdown>
                 <div >
-                    {jobsApplied.map((job, idx) => (
+                    {displayJobs.map((job, idx) => (
                         <AppliedJob key={idx} job={job}></AppliedJob>
                     ))}
                 </div>
